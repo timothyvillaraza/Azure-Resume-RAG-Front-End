@@ -63,4 +63,3 @@ jobs:
           app-name: 'timothyvillaraza'
           slot-name: 'Production'
           package: release.zip
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_813F46227B5345B9AEE47E08D9A201EA }}
