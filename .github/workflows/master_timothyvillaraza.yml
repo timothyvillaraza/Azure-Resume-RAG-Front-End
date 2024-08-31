@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -21,23 +21,17 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build (test commented out in master_timothyvillaraza.yml)
+      - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
-          # npm run test --if-present
-
-      # Zip the build directory
-      - name: Zip Release
-        uses: TheDoctor0/zip-release@0.7.6
-        with:
-          filename: release.zip
-          path: ./build/*
+          npm run test --if-present
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: release.zip
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -51,15 +45,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
       
       - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
           app-name: 'timothyvillaraza'
           slot-name: 'Production'
-          package: release.zip
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7BDCCBFB389745A797B7B3D1D3116A51 }}
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B8A54B65737D44DCA991C37D1047E340 }}
