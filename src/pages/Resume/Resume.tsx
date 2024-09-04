@@ -1,6 +1,6 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getResumeInference } from '../../api/resume/resume';
+// import { useQuery } from '@tanstack/react-query';
+// import { getResumeInference } from '../../api/resume/resume';
 import './Resume.css'; 
 
 const Resume: React.FC = () => {
