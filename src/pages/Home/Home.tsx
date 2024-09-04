@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
-import './Home.css'; // Importing the styles for this component
+import './Home.css';
 
 const Resume: React.FC = () => {
   return (
     <div className="home">
+      <img className="profile-img"src="profile.jpg" alt="Timothy Villaraza" />
       <h1>Timothy Villaraza</h1>
       
       <div className="social-links">

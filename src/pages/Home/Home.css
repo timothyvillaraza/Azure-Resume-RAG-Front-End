@@ -1,5 +1,5 @@
 .home {
-  background-color: #ddd;
+  background-color: #FFFFE0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,4 +36,12 @@ h1 {
 
 div {
   margin-top: 20px; /* Space above the resume link */
+}
+
+.profile-img {
+  width: 300px; /* Adjust the size as needed */
+  height: 300px; /* Same as width to make it a perfect circle */
+  border-radius: 50%; /* This makes the image circular */
+  border: 2px solid #000; /* Adjust the border width and color */
+  object-fit: cover; /* Ensures the image covers the circle without distortion */
 }
