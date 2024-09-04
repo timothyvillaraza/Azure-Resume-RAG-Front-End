@@ -1,0 +1,13 @@
+.resume {
+  background-color: #ddd;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically (if needed) */
+}
+
+iframe {
+  border: none;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

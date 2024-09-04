@@ -1,13 +1,39 @@
 .home {
   background-color: #ddd;
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center;     /* Centers vertically (if needed) */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center; /* Centers the text and links */
 }
 
-iframe {
-  border: none;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.social-links {
+  display: flex;
+  gap: 10px; /* Adds space between each link */
+}
+
+.social-links a {
+  text-decoration: none;
+  color: #333;
+  display: inline-flex;
+  align-items: center; /* Aligns the icon and text vertically */
+  gap: 5px; /* Adds space between the icon and the text */
+}
+
+.social-links a:hover {
+  color: #4078c0; /* Optional: Change color on hover */
+}
+
+.social-links svg {
+  font-size: 1.2rem; /* Adjust the size of the icons */
+}
+
+
+h1 {
+  margin-bottom: 10px; /* Space below the title */
+}
+
+div {
+  margin-top: 20px; /* Space above the resume link */
 }
