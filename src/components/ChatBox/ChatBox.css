@@ -1,0 +1,52 @@
+/* Chat-like footer with rounded edges */
+.chatbox-container {
+    position: fixed;
+    bottom: 10px; /* Raised a little from the bottom */
+    width: 850px; /* Same width as the iframe */
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Softer shadow for floating effect */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    border-radius: 30px; /* Add rounded corners */
+    border: 1px solid #e0e0e0;
+  }
+  
+  /* Input box styled like a chat input */
+  .chatbox-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+    font-size: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    outline: none;
+    margin-right: 10px;
+    transition: border-color 0.2s ease;
+  }
+  
+  .chatbox-input:focus {
+    border-color: #007bff; /* Blue border when focused */
+  }
+  
+  /* Send button */
+  .chatbox-send-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .chatbox-send-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  

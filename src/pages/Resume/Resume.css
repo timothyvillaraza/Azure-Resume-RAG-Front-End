@@ -1,13 +1,18 @@
-.resume {
+.resume-container {
   background-color: #ddd;
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center;     /* Centers vertically (if needed) */
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 100px;
+  position: relative;
+  min-height: 100vh;
 }
 
-iframe {
+.resume-iframe {
   border: none;
   margin-top: 100px;
   margin-bottom: 100px;
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 850px;
+  height: 1100px;
 }

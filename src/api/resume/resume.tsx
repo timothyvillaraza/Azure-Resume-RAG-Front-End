@@ -1,13 +1,13 @@
 import axios from "axios";
 
-interface Inference {
+export interface Inference {
     llm_response: string;
     context_sources: string[];
 }
 
-export function getResumeInference(): Promise<Inference> {
+export function getResumeInference(query: string): Promise<Inference> {
     return axios.post<Inference>("http://localhost:5004/api/getresumeinference", {
-        query: "What are Tim's strengths?"
+        query: query  // Send the user's query
     }, {
         headers: {
             "Content-Type": "application/json"

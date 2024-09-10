@@ -1,0 +1,31 @@
+.chat-message-history {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    width: 300px;
+    max-height: calc(100vh - 120px); /* Leaves space for the footer */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Scroll if messages exceed the available height */
+    z-index: 100;
+  }
+  
+  .chat-message {
+    margin-bottom: 10px;
+  }
+  
+  .user-message {
+    background-color: #f1f1f1;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+  }
+  
+  .bot-response {
+    background-color: #e0e0e0;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
