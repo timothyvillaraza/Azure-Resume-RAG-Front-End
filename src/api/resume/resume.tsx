@@ -5,14 +5,26 @@ export interface Inference {
     context_sources: string[];
 }
 
-export function getResumeInference(query: string): Promise<Inference> {
-    return axios.post<Inference>("http://localhost:5004/api/getresumeinference", {
-        query: query  // Send the user's query
-    }, {
-        headers: {
-            "Content-Type": "application/json"
+// Updated getResumeInference function
+export async function getResumeInference(query: string): Promise<string> {
+    try {
+        const endpoint = process.env.REACT_APP_GET_RESUME_INFERENCE_ENDPOINT;
+
+        if (!endpoint) {
+            throw new Error("Endpoint is not defined.");
         }
-    }).then((response) => {
-        return response.data;
-    });
+        
+        const response = await axios.post<Inference>(endpoint, {
+            query: query  // Send the user's query
+        }, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        return response.data.llm_response;  // Return the actual LLM response
+    } catch (error) {
+        console.error("Error fetching inference:", error);
+        return 'Error fetching response. Please try again.';  // Return an error message
+    }
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import { useQuery } from '@tanstack/react-query';
-// import { getResumeInference } from '../../api/resume/resume';
+import { getResumeInference } from '../../api/resume/resume';
 import './Resume.css'; 
 import ChatBox from '../../components/ChatBox/ChatBox';
 import ChatMessageHistory from '../../components/ChatMessageHistory/ChatMessageHistory';
@@ -9,23 +8,22 @@ import ChatMessageHistory from '../../components/ChatMessageHistory/ChatMessageH
 const Resume: React.FC = () => {
   const [messages, setMessages] = useState<{ userMessage: string; botResponse: string }[]>([]);
 
-  const handleSendMessage = (message: string) => {
-    // Add the user message and a mock response to the chat history
+  const handleSendMessage = async (message: string) => {
+    // Add the user message with a placeholder for bot response
     setMessages([
       ...messages,
-      { userMessage: message, botResponse: 'This is a mock response.' }
+      { userMessage: message, botResponse: '...' }  // Placeholder while fetching the response
+    ]);
+
+    // Call the updated getResumeInference function to get the real response or an error message
+    const botResponse = await getResumeInference(message);
+
+    // Update the chat history with the actual bot response or error
+    setMessages((prevMessages) => [
+      ...prevMessages.slice(0, -1), // Remove the placeholder
+      { userMessage: message, botResponse }  // Set the actual response
     ]);
   };
-
-  // const { data: inference, isLoading, isError } = useQuery({queryKey: ['resumeInference'], queryFn: getResumeInference});
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (isError) {
-  //   return <div>Error fetching resume inference</div>;
-  // }
 
   return (
     <div className="resume-container">
