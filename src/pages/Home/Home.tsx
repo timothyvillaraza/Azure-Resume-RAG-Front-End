@@ -8,9 +8,9 @@ import './Home.css';
 const Resume: React.FC = () => {
   return (
     <div className="home">
-      <img className="profile-img"src="profile.jpg" alt="Timothy Villaraza" />
-      <h1>Timothy Villaraza</h1>
-      
+      <img className="profile-img" src="profile.jpg" alt="Timothy Villaraza" />
+      <h1 className="profile-title">Timothy Villaraza</h1>
+
       <div className="social-links">
         <a href="mailto:timothyvillaraza@outlook.com" aria-label="Email">
           <FontAwesomeIcon icon={faEnvelope} /> timothyvillaraza@outlook.com
@@ -25,8 +25,8 @@ const Resume: React.FC = () => {
           <FontAwesomeIcon icon={faGithub} /> timothyvillaraza
         </a>
       </div>
-      
-      <div>
+
+      <div className="resume-link-container">
         <Link to="/resume">Resume</Link>
       </div>
     </div>

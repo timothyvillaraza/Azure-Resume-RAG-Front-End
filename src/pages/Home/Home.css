@@ -29,12 +29,11 @@
   font-size: 1.2rem; /* Adjust the size of the icons */
 }
 
-
-h1 {
+.profile-title {
   margin-bottom: 10px; /* Space below the title */
 }
 
-div {
+.resume-link-container {
   margin-top: 20px; /* Space above the resume link */
 }
 

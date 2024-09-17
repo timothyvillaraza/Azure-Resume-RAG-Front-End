@@ -1,31 +1,100 @@
+/* Chat Message History Styling */
 .chat-message-history {
-    position: fixed;
-    top: 100px;
-    left: 20px;
-    width: 300px;
-    max-height: calc(100vh - 120px); /* Leaves space for the footer */
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* Scroll if messages exceed the available height */
-    z-index: 100;
-  }
-  
-  .chat-message {
-    margin-bottom: 10px;
-  }
-  
-  .user-message {
-    background-color: #f1f1f1;
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 5px;
-  }
-  
-  .bot-response {
-    background-color: #e0e0e0;
-    padding: 8px;
-    border-radius: 8px;
-  }
-  
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  width: 300px;
+  max-height: calc(100vh - 200px); /* Leaves space for the footer */
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Enables scrolling if messages exceed the max height */
+  z-index: 100;
+  transition: transform 0.3s ease-in-out; /* Smooth slide transition */
+  transform: translateX(-340px); /* Initially hidden by sliding off the screen to the left */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align items at the top */
+  align-items: flex-start; /* Align items to the left by default */
+}
+
+/* Chat box becomes visible by setting transform to 0 */
+.chat-message-history.visible {
+  transform: translateX(0); /* Slide into view */
+}
+
+/* Chat box hidden by moving it left */
+.chat-message-history.hidden {
+  transform: translateX(-340px); /* Slide out of view */
+}
+
+/* Message container for both user and bot messages */
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure messages take full width of the chat box */
+  padding: 5px 0; /* Space between each message */
+}
+
+/* User message styling (right-aligned) */
+.user-message {
+  background-color: #d1e7dd; /* Light green background */
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  max-width: 80%;
+  color: #333; /* Darker text color */
+  font-family: Arial, sans-serif;
+  align-self: flex-end; /* Align user messages to the right */
+  word-wrap: break-word;
+}
+
+/* Bot response styling (left-aligned) */
+.bot-response {
+  background-color: #e0e0e0; /* Slightly darker gray background for bot messages */
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  max-width: 80%;
+  color: #333; /* Darker text color */
+  font-family: Arial, sans-serif;
+  align-self: flex-start; /* Align bot messages to the left */
+  word-wrap: break-word;
+}
+
+/* Triangle toggle */
+.toggle-triangle {
+  position: fixed;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  border-style: solid;
+  z-index: 101;
+  transition: left 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Smooth transition for both position and color */
+  top: 105px;
+}
+
+/* When chat is closed (triangle points to the right) */
+.toggle-triangle.close {
+  left: 10px;
+  border-width: 10px 0 10px 14px; /* Triangle pointing right */
+  border-color: transparent transparent transparent #999;
+}
+
+/* When chat is open (triangle points to the left) */
+.toggle-triangle.open {
+  left: 345px;
+  border-width: 10px 14px 10px 0; /* Triangle pointing left */
+  border-color: transparent #999 transparent transparent;
+}
+
+/* Hover effect for triangle when chat is closed (points right) */
+.toggle-triangle.close:hover {
+  border-color: transparent transparent transparent #333; /* Darker shade on hover */
+}
+
+/* Hover effect for triangle when chat is open (points left) */
+.toggle-triangle.open:hover {
+  border-color: transparent #333 transparent transparent; /* Darker shade on hover for left-pointing triangle */
+}

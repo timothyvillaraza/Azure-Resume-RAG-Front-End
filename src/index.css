@@ -12,4 +12,24 @@ code {
     monospace;
 }
 
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* Adjust the width of the scrollbar */
+}
 
+/* Track (make it invisible) */
+::-webkit-scrollbar-track {
+  background: transparent; /* Make the non-scroll area invisible */
+}
+
+/* Handle (Thumb) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar handle */
+  border-radius: 10px; /* Optional: Round the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darken on hover */
+}
+  
