@@ -8,7 +8,7 @@ export interface Inference {
 // Updated getResumeInference function
 export async function getResumeInference(query: string): Promise<string> {
     try {
-        const endpoint = process.env.REACT_APP_GET_RESUME_INFERENCE_ENDPOINT;
+        const endpoint = "https://famyfunctionapp201420142015.azurewebsites.net/api/getresumeinference?code=RZ2AJ5p7wbPBVoD2R3ZNEPoYGL917GucxNHi_0KQwPsuAzFuPJJWNw%3D%3D";
 
         if (!endpoint) {
             throw new Error("Endpoint is not defined.");
