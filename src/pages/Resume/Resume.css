@@ -8,6 +8,30 @@
   min-height: 100vh;
 }
 
+/* Rounded square style for the home button using FontAwesome icon */
+.home-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px; /* Fixed width for the square */
+  height: 40px; /* Fixed height for the square */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px; /* Rounded corners for a rounded square */
+  font-size: 18px; /* Icon size */
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
+}
+
 .resume-iframe {
   border: none;
   margin-top: 100px;

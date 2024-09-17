@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { getResumeInference } from '../../api/resume/resume';
 import './Resume.css'; 
 import ChatBox from '../../components/ChatBox/ChatBox';
@@ -32,7 +35,11 @@ const Resume: React.FC = () => {
 
   return (
     <div className="resume-container">
-      {/* ChatMessageHistory always rendered, visibility controlled via CSS */}
+      {/* Home button replaced with a home icon */}
+      <Link to="/" className="home-button" aria-label="Home">
+        <FontAwesomeIcon icon={faHome} />
+      </Link>
+
       <ChatMessageHistory
         messages={messages}
         isVisible={isChatVisible}
