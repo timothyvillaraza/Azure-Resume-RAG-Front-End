@@ -5,7 +5,7 @@ import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
 
-const Resume: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <div className="home">
       <img className="profile-img" src="profile.jpg" alt="Timothy Villaraza" />
@@ -27,10 +27,10 @@ const Resume: React.FC = () => {
       </div>
 
       <div className="resume-link-container">
-        <Link to="/resume">Resume</Link>
+        <Link to="/resume">Interactive Resume</Link>
       </div>
     </div>
   );
 };
 
-export default Resume;
+export default Home;

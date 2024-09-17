@@ -5,15 +5,10 @@ export interface Inference {
     context_sources: string[];
 }
 
-// Updated getResumeInference function
-export async function getResumeInference(query: string): Promise<string> {
+export async function getResumeInferenceWithSources(query: string): Promise<Inference> {
     try {
         const endpoint = "https://famyfunctionapp201420142015.azurewebsites.net/api/getresumeinference?code=RZ2AJ5p7wbPBVoD2R3ZNEPoYGL917GucxNHi_0KQwPsuAzFuPJJWNw%3D%3D";
 
-        if (!endpoint) {
-            throw new Error("Endpoint is not defined.");
-        }
-        
         const response = await axios.post<Inference>(endpoint, {
             query: query  // Send the user's query
         }, {
@@ -22,9 +17,9 @@ export async function getResumeInference(query: string): Promise<string> {
             }
         });
 
-        return response.data.llm_response;  // Return the actual LLM response
+        return response.data;  // Return both llm_response and context_sources
     } catch (error) {
         console.error("Error fetching inference:", error);
-        return 'Error fetching response. Please try again.';  // Return an error message
+        return { llm_response: 'Error fetching response. Please try again.', context_sources: [] };
     }
 }

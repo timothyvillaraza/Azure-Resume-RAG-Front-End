@@ -1,41 +1,61 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons'
-import { getResumeInference } from '../../api/resume/resume';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { getResumeInferenceWithSources } from '../../api/resume/resume';
 import './Resume.css'; 
 import ChatBox from '../../components/ChatBox/ChatBox';
 import ChatMessageHistory from '../../components/ChatMessageHistory/ChatMessageHistory';
 
 const Resume: React.FC = () => {
-  const [messages, setMessages] = useState<{ userMessage: string; botResponse: string }[]>([]);
+  const [messages, setMessages] = useState<{ userMessage: string; botResponse: string, contextSources: string[] }[]>([]);
   const [isChatVisible, setIsChatVisible] = useState(false); // Initially hidden
 
   const handleSendMessage = async (message: string) => {
     if (!isChatVisible) {
-      setIsChatVisible(true); // Slide in chat when first message is sent
+      setIsChatVisible(true); // Show chatbox on first message
     }
 
-    // Add the user message with a placeholder for bot response
-    const updatedMessages = [
-      ...messages,
-      { userMessage: message, botResponse: '...' } // Placeholder while fetching the response
-    ];
+    // Add a placeholder for the message being processed
+    const updatedMessages = [...messages, { userMessage: message, botResponse: '...', contextSources: [] }];
     setMessages(updatedMessages);
 
-    // Fetch the bot's response
-    const botResponse = await getResumeInference(message);
+    // Fetch bot response and context sources
+    const { llm_response, context_sources } = await getResumeInferenceWithSources(message);
 
-    // Update the chat history with the actual bot response
-    setMessages((prevMessages) => [
-      ...prevMessages.slice(0, -1), // Remove the placeholder message
-      { userMessage: message, botResponse }  // Add the actual response
+    // Update chat history with real data
+    setMessages(prevMessages => [
+      ...prevMessages.slice(0, -1), // Remove placeholder
+      { userMessage: message, botResponse: llm_response, contextSources: context_sources }
     ]);
+
+    // Highlight the resume using context_sources
+    highlightResume(context_sources);
+  };
+
+  // Function to highlight text in the iframe (non-recursive)
+  const highlightResume = (contextSources: string[]) => {
+    const iframe = document.querySelector('iframe');
+    if (!iframe || !iframe.contentDocument) return;  // Ensure iframe and its document is loaded
+
+    const doc = iframe.contentDocument;
+    const elements = Array.from(doc.body.getElementsByTagName('*'));  // Get all elements in the body
+
+    contextSources.forEach(source => {
+      elements.forEach(element => {
+        // Check if the element has text content and contains the source
+        if (element.textContent?.includes(source)) {
+          element.innerHTML = element.innerHTML.replace(
+            source,
+            `<mark>${source}</mark>`  // Wrap the matched source with <mark> tag
+          );
+        }
+      });
+    });
   };
 
   return (
     <div className="resume-container">
-      {/* Home button replaced with a home icon */}
       <Link to="/" className="home-button" aria-label="Home">
         <FontAwesomeIcon icon={faHome} />
       </Link>

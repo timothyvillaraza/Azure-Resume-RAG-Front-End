@@ -11,6 +11,9 @@
 .social-links {
   display: flex;
   gap: 10px; /* Adds space between each link */
+  flex-wrap: nowrap; /* Prevents the links from wrapping to the next line */
+  justify-content: center; /* Keeps the links centered */
+  overflow-x: auto; /* Allows horizontal scrolling if necessary */
 }
 
 .social-links a {
@@ -19,6 +22,7 @@
   display: inline-flex;
   align-items: center; /* Aligns the icon and text vertically */
   gap: 5px; /* Adds space between the icon and the text */
+  white-space: nowrap; /* Prevents text from breaking into multiple lines */
 }
 
 .social-links a:hover {
