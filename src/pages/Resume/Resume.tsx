@@ -6,6 +6,7 @@ import { getResumeInferenceWithSources } from '../../api/resume/resume';
 import './Resume.css'; 
 import ChatBox from '../../components/ChatBox/ChatBox';
 import ChatMessageHistory from '../../components/ChatMessageHistory/ChatMessageHistory';
+import PopupDiagram from '../../components/PopupDiagram/PopupDiagram';
 
 const Resume: React.FC = () => {
   const [messages, setMessages] = useState<{ userMessage: string; botResponse: string, contextSources: string[] }[]>([]);
@@ -28,30 +29,13 @@ const Resume: React.FC = () => {
       ...prevMessages.slice(0, -1), // Remove placeholder
       { userMessage: message, botResponse: llm_response, contextSources: context_sources }
     ]);
-
-    // Highlight the resume using context_sources
-    highlightResume(context_sources);
   };
 
-  // Function to highlight text in the iframe (non-recursive)
-  const highlightResume = (contextSources: string[]) => {
-    const iframe = document.querySelector('iframe');
-    if (!iframe || !iframe.contentDocument) return;  // Ensure iframe and its document is loaded
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
-    const doc = iframe.contentDocument;
-    const elements = Array.from(doc.body.getElementsByTagName('*'));  // Get all elements in the body
-
-    contextSources.forEach(source => {
-      elements.forEach(element => {
-        // Check if the element has text content and contains the source
-        if (element.textContent?.includes(source)) {
-          element.innerHTML = element.innerHTML.replace(
-            source,
-            `<mark>${source}</mark>`  // Wrap the matched source with <mark> tag
-          );
-        }
-      });
-    });
+  // Function to toggle the popup state
+  const handlePopupToggle = () => {
+    setIsPopupVisible((prev) => !prev);
   };
 
   return (
@@ -75,7 +59,9 @@ const Resume: React.FC = () => {
         seamless
       ></iframe>
       
-      <ChatBox onSendMessage={handleSendMessage} />
+      <ChatBox onSendMessage={handleSendMessage} handlePopupToggle={handlePopupToggle} />
+
+      {isPopupVisible && <PopupDiagram handlePopupToggle={handlePopupToggle} />}
     </div>
   );
 };

@@ -20,7 +20,7 @@ const ChatMessageHistory: React.FC<ChatMessageHistoryProps> = ({ messages, isVis
   return (
     <div>
       <div
-        ref={chatBoxRef} // Attach the ref to the chat message history container
+        ref={chatBoxRef}
         className={`chat-message-history ${isVisible ? 'visible' : 'hidden'}`}
       >
         {messages.map((message, index) => (
@@ -30,12 +30,13 @@ const ChatMessageHistory: React.FC<ChatMessageHistoryProps> = ({ messages, isVis
           </div>
         ))}
       </div>
-
-      {/* Triangle as the clickable element */}
-      <div
-        className={`toggle-triangle ${isVisible ? 'open' : 'close'}`}
-        onClick={toggleVisibility}
-      />
+      
+      {messages.length > 0 && (
+        <div
+          className={`toggle-triangle ${isVisible ? 'open' : 'close'}`}
+          onClick={toggleVisibility}
+        />
+      )}
     </div>
   );
 };
