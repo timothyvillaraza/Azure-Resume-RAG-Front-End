@@ -7,7 +7,7 @@ export interface Inference {
 
 export async function getResumeInferenceWithSources(query: string): Promise<Inference> {
     try {
-        const endpoint = process.env.REACT_APP_GET_RESUME_INFERENCE_ENDPOINT;
+        const endpoint = "https://faresumerag.azurewebsites.net/api/getresumeinference?code=I6iPraMr3vMwhZJSG8fo9RNCRAVNPbRQycIymj6l0NxmAzFuegSpYg%3D%3D";
 
         if (!endpoint) {
             throw new Error("API endpoint is not defined in environment variables.");
