@@ -7,7 +7,11 @@ export interface Inference {
 
 export async function getResumeInferenceWithSources(query: string): Promise<Inference> {
     try {
-        const endpoint = "https://famyfunctionapp201420142015.azurewebsites.net/api/getresumeinference?code=RZ2AJ5p7wbPBVoD2R3ZNEPoYGL917GucxNHi_0KQwPsuAzFuPJJWNw%3D%3D";
+        const endpoint = process.env.REACT_APP_GET_RESUME_INFERENCE_ENDPOINT;
+
+        if (!endpoint) {
+            throw new Error("API endpoint is not defined in environment variables.");
+        }
 
         const response = await axios.post<Inference>(endpoint, {
             query: query  // Send the user's query

@@ -51,7 +51,7 @@ const Resume: React.FC = () => {
       />
 
       <iframe
-        src="https://resume.creddle.io/embed/6x3f8thxdss"
+        src={`${process.env.PUBLIC_URL}/resume.pdf#view=FitH`}
         width="850"
         height="1100"
         className="resume-iframe"
